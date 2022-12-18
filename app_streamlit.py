@@ -19,6 +19,12 @@ def add_bg_from_url():
 
 add_bg_from_url() 
 
+# exception handling
+
+# v = ValueError('Please fill all the fields')
+
+# st.exception(v)
+
 # import the model
 pipe = pickle.load(open('pipe.pkl', 'rb'))
 df = pickle.load(open('df.pkl', 'rb'))
@@ -38,8 +44,8 @@ type = st.selectbox('Type*', df['TypeName'].unique())
 ram = st.selectbox('RAM(in GB)*', [2,4,6,8,12,16,24,32,64])
 
 # weight
-weight = st.number_input('Weight of the laptop*')
-st.warning('Note - Most common laptop weights are between 2 to 3 (kgs)')
+weight = st.number_input('Weight of the laptop*', min_value=1.0, max_value=5.0)
+st.warning('Note - Most common laptop weights are between 2 to 3 (kgs), min weight-1, max weight-5')
 
 # Touchscreen
 touchscreen = st.selectbox('Touchscreen*', ['No','Yes'])
@@ -48,7 +54,8 @@ touchscreen = st.selectbox('Touchscreen*', ['No','Yes'])
 ips = st.selectbox('IPS*', ['No','Yes'])
 
 # screen size
-screen_size = st.number_input('Screen_Size*')
+screen_size = st.number_input('Screen_Size*',min_value=294.0, max_value=432.0)
+st.warning('Note - min size-294 (mm), max weight-432 (mm)')
 
 # resolution
 resolution = st.selectbox('Screen Resolution*',['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'])
